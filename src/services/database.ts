@@ -3,7 +3,6 @@ import fs from 'fs'
 import path from 'path'
 
 const databasePath = path.resolve('database.json')
-console.log(databasePath)
 
 export function getPage(path: string) {
   const allData: Record<string, Data> | null = fs.existsSync(databasePath)
