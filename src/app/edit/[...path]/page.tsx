@@ -7,23 +7,22 @@ import { getPage } from '@/services/database'
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ puckPath: string[] }>
+  params: Promise<{ path: string[] }>
 }): Promise<Metadata> {
-  const { puckPath = [] } = await params
-  const path = `/${puckPath.join('/')}`
+  const { path = [] } = await params
 
   return {
-    title: 'Editing: ' + path,
+    title: `Editing /${path.join('/')}`,
   }
 }
 
 export default async function Page({
   params,
 }: {
-  params: Promise<{ puckPath: string[] }>
+  params: Promise<{ path: string[] }>
 }) {
-  const { puckPath = [] } = await params
-  const path = `/${puckPath.join('/')}`
+  const { path: pathArray = [] } = await params
+  const path = `/${pathArray.join('/')}`
   const data = getPage(path)
 
   return (
