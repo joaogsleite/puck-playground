@@ -1,7 +1,9 @@
-import { Client } from './client'
 import { notFound } from 'next/navigation'
 import { Metadata } from 'next'
 import { getPage } from '@/services/database'
+import { Render } from '@measured/puck'
+import config from '@/services/puck'
+import { setLocale } from '@/components/locale-ctx/server'
 
 export async function generateMetadata({
   params,
@@ -18,16 +20,18 @@ export async function generateMetadata({
 export default async function Page({
   params,
 }: {
-  params: Promise<{ path: string[] }>
+  params: Promise<{ locale: string, path: string[] }>
 }) {
-  const { path = [] } = await params
+  const { locale, path = [] } = await params
   const data = getPage(`/${path.join('/')}`)
+
+  setLocale(locale)
 
   if (!data) {
     return notFound()
   }
 
   return (
-    <Client data={data} />
+    <Render config={config} data={data} />
   )
 }

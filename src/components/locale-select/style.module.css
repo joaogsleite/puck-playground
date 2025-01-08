@@ -1,0 +1,11 @@
+.localeSelect {
+  width: 63px;
+}
+.localeSelect > div {
+  margin: 0;
+  padding: 0;
+}
+.localeSelect select {
+  padding: 0 10px;
+  height: 34px;
+}

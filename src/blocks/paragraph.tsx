@@ -1,19 +1,20 @@
+import { IMultilangField, MultilangField, multilangFieldConfig } from '@/components/multilang-field'
 import { ComponentConfig } from '@measured/puck'
 
 export interface IParagraphBlock {
-  copy: string
+  copy: IMultilangField<string>
 }
 
 export const ParagraphBlock: ComponentConfig<IParagraphBlock> = {
-  fields: {
-    copy: { type: 'text' },
-  },
+  resolveFields: () => ({
+    copy: multilangFieldConfig({ type: 'text', label: 'Copy' }),
+  }),
   defaultProps: {
-    copy: 'Hello world',
+    copy: { en: 'Hello world' },
   },
   render: ({ copy }) => (
     <p style={{padding: '0 64px'}}>
-      {copy}
+      <MultilangField field={copy} />
     </p>
   ),
 }

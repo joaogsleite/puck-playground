@@ -1,1 +1,32 @@
-{"/":{"content":[{"type":"HeadingBlock","props":{"title":"Edit this page by adding /edit to the end of the URL","id":"HeadingBlock-1694032984497"}},{"type":"ParagraphBlock","props":{"copy":"Hello world","id":"ParagraphBlock-5ff28a49-6bc6-4e0a-b2b8-cf687e3f5578"}}],"root":{"props":{"title":""}},"zones":{}}}
+{
+  "/": {
+    "root": {
+      "props": {}
+    },
+    "content": [
+      {
+        "type": "HeadingBlock",
+        "props": {
+          "title": {
+            "en": "Title",
+            "pt": "Título",
+            "fr": "Titre"
+          },
+          "id": "HeadingBlock-b2f1c45d-2b62-4452-825f-6a96dbd3df7f"
+        }
+      },
+      {
+        "type": "ParagraphBlock",
+        "props": {
+          "copy": {
+            "en": "Hello world",
+            "pt": "Olá mundo",
+            "fr": "Bonjour le monde"
+          },
+          "id": "ParagraphBlock-eff9aec2-3799-465c-8c5a-e575f96050a0"
+        }
+      }
+    ],
+    "zones": {}
+  }
+}
