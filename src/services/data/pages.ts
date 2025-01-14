@@ -6,15 +6,18 @@ import path from 'path'
 const jsonPath = path.resolve('src/data/pages.json')
 
 function checkPage(page: Data, pagePath: string, routePath: string) {
-  const routeParts = routePath.split('/')
-  const pageParts = pagePath.split('/')
+  const routeParts = routePath.split('/').map(decodeURIComponent)
+  const pageParts = pagePath.split('/').map(decodeURIComponent)
   const params: any = {}
   if (routeParts.length != pageParts.length) {
     return
   }
   for (let i = 0; i < pageParts.length; i++) {
     if (pageParts[i].startsWith(':')) {
-      params[pageParts[i].substring(1)] = decodeURIComponent(routeParts[i])
+      const key = pageParts[i].substring(1)
+      params[key] = routeParts[i].startsWith(':') 
+        ? (page.root.props as any)[key] || ''
+        : routeParts[i]
     } else if (pageParts[i] !== routeParts[i]) {
       return
     }
@@ -31,7 +34,7 @@ function checkPage(page: Data, pagePath: string, routePath: string) {
     }
   }
 }
-export function getPage(routePath: string) {
+export function getPage(routePath: string): Data | undefined {
   const allData: Record<string, Data> | null = fs.existsSync(jsonPath)
     ? JSON.parse(fs.readFileSync(jsonPath, 'utf-8'))
     : undefined

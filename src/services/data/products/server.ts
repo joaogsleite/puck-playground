@@ -3,7 +3,7 @@ import { fileExists, readJSON } from '@/helpers/fs'
 import path from 'path'
 
 interface Product {
-  id: number
+  id: string
   name: string
   description: string
   price: number
@@ -16,7 +16,7 @@ export async function listProducts() {
   return allData
 }
 
-export async function getProduct(id?: number) {
+export async function getProduct(id?: string) {
   if (!id) return
   const allProducts = await listProducts()
   if (!allProducts) return undefined

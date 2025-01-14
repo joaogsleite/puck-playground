@@ -2,15 +2,15 @@
 
 import type { Data } from '@measured/puck'
 import { Puck } from '@measured/puck'
-import config from '@/services/puck'
+import { getConfig } from '@/services/puck'
 import RoutingProvider from '@/components/routing-ctx/client'
 import LocaleSelect from '@/components/locale-select'
 
-export function Client({ path, data }: { path: string; data: Partial<Data> }) {
+export function Client({ path, data }: { path: string; data: Data }) {
   return (
     <RoutingProvider value={{ ...data.root?.props }}>{() =>
       <Puck
-        config={config}
+        config={getConfig(data)}
         data={data}
         overrides={{
           headerActions: ({children}) => <><LocaleSelect />{children}</>

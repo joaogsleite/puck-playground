@@ -2,7 +2,7 @@ import { notFound } from 'next/navigation'
 import { Metadata } from 'next'
 import { getPage } from '@/services/data/pages'
 import { Render } from '@measured/puck'
-import config from '@/services/puck'
+import { getConfig } from '@/services/puck'
 import { setRoutingCtx } from '@/components/routing-ctx/server'
 
 export async function generateMetadata({
@@ -29,6 +29,6 @@ export default async function Page({
   }
   setRoutingCtx({ locale, ...data.root.props })
   return (
-    <Render config={config} data={data} />
+    <Render config={getConfig(data)} data={data} />
   )
 }

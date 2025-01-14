@@ -1,21 +1,26 @@
 import { useProduct } from "@/services/data/products"
 import styles from './style.module.css'
+import { useRoutingCtx } from "../routing-ctx"
+import { useTranslations } from "@/services/translations"
 
-export default function ProductInfo({ id }: { id?: number }) {
-  const product = useProduct(id)
+
+export default function ProductInfo() {
+  const [ctx] = useRoutingCtx()
+  const product = useProduct(ctx.id)
+  const t = useTranslations(ctx.locale)
   return product?.id ? (
     <div style={{padding: '0 64px'}}>
-      <h2>Product info</h2>
+      <h2>{t.title}</h2>
       <dl className={styles.detail}>
-        <dt>Name</dt>
+        <dt>{t.name}</dt>
         <dd>{product.name}</dd>
       </dl>
       <dl  className={styles.detail}>
-        <dt>Description</dt>
+        <dt>{t.description}</dt>
         <dd>{product.description}</dd>
       </dl>
       <dl className={styles.detail}>
-        <dt>Price</dt>
+        <dt>{t.price}</dt>
         <dd>{product.price}</dd>
       </dl>
     </div>

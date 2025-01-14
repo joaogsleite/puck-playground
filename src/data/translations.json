@@ -1,0 +1,20 @@
+{
+  "en": {
+    "title": "Product information",
+    "name": "Name",
+    "description": "Description",
+    "price": "Price"
+  },
+  "pt": {
+    "title": "Informação do produto",
+    "name": "Nome",
+    "description": "Descrição",
+    "price": "Preço"
+  },
+  "fr": {
+    "title": "Informations sur le produit",
+    "name": "Nom",
+    "description": "Détails",
+    "price": "prix"
+  }
+}

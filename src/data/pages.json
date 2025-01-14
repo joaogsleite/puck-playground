@@ -33,7 +33,7 @@
     "root": {
       "props": {
         "fullPath": "/products/:id",
-        "id": ":id"
+        "id": "3"
       }
     },
     "content": [
@@ -41,7 +41,9 @@
         "type": "HeadingBlock",
         "props": {
           "title": {
-            "en": "Products page"
+            "en": "Products page",
+            "pt": "Página de produto",
+            "fr": "Page produit"
           },
           "id": "HeadingBlock-d0b22291-e0e6-481e-aad2-4eec5b543307"
         }

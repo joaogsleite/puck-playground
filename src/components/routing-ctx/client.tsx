@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 'use client'
+import { usePuckPageCtx } from '@/services/puck'
 import { initialCtx, IRoutingCtx } from '@/services/routing'
 import { createContext, useCallback, useContext, useState } from 'react'
 
@@ -8,8 +9,10 @@ const Ctx = createContext(
 )
 let ctxValue = initialCtx
 
-export function useRoutingCtx() {
-  return useContext(Ctx)
+export function useRoutingCtx(): [IRoutingCtx, (v: Partial<IRoutingCtx>) => void]  {
+  const ctx = useContext(Ctx)
+  const puckCtx = usePuckPageCtx()
+  return [{ ...ctx[0], ...puckCtx}, ctx[1]]
 }
 
 export function getCtx() {
