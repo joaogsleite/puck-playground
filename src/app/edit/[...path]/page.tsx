@@ -2,7 +2,7 @@
 import '@measured/puck/puck.css'
 import { Client } from './client'
 import { Metadata } from 'next'
-import { getPage } from '@/services/database'
+import { getPage } from '@/services/data/pages'
 
 export async function generateMetadata({
   params,
@@ -12,7 +12,7 @@ export async function generateMetadata({
   const { path = [] } = await params
 
   return {
-    title: `Editing /${path.join('/')}`,
+    title: `Editing /${path.map((p) => decodeURIComponent(p)).join('/')}`,
   }
 }
 

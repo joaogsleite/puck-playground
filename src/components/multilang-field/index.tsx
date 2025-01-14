@@ -1,7 +1,7 @@
 import { ObjectField } from '@measured/puck'
 import ClientMultiLangField from './client'
-import { getLocale } from '../locale-ctx/client'
-import { useLocale } from '../locale-ctx/server'
+import { getCtx } from '../routing-ctx/client'
+import { useRoutingCtx } from '../routing-ctx/server'
 
 export interface IMultilangField<T> {
   [locale: string]: T
@@ -14,12 +14,12 @@ export function MultilangField<T>({
   field: IMultilangField<T>,
   children?: (locale?: T) => React.ReactNode,
 }) {
-  const localeFromServer = useLocale()
-  if (localeFromServer) { // if we are on view mode (server side)
+  const ctxFromServer = useRoutingCtx()
+  if (ctxFromServer) { // if we are on view mode (server side)
     if (children) {
-      return children(field[localeFromServer])
+      return children(field[ctxFromServer.locale])
     } else {
-      return field[localeFromServer]
+      return field[ctxFromServer.locale]
     }
   } else { // if we are on edit mode (client side)
     return (
@@ -31,12 +31,12 @@ export function MultilangField<T>({
 }
 
 export function multilangFieldConfig(field: unknown) {
-  const currentLocale = getLocale()
+  const { locale } = getCtx()
   const multilangField: ObjectField = {
     type: 'object',
     label: (field as { label?: string }).label,
     objectFields: {
-      [currentLocale]: { 
+      [locale]: { 
         ...(field as ObjectField),
         label: ' '
       }

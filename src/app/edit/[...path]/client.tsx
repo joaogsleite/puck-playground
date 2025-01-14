@@ -3,25 +3,25 @@
 import type { Data } from '@measured/puck'
 import { Puck } from '@measured/puck'
 import config from '@/services/puck'
-import LocaleProvider from '@/components/locale-ctx/client'
+import RoutingProvider from '@/components/routing-ctx/client'
 import LocaleSelect from '@/components/locale-select'
 
 export function Client({ path, data }: { path: string; data: Partial<Data> }) {
   return (
-    <LocaleProvider>{() =>
+    <RoutingProvider value={{ ...data.root?.props }}>{() =>
       <Puck
         config={config}
         data={data}
         overrides={{
-            headerActions: ({children}) => <><LocaleSelect />{children}</>
+          headerActions: ({children}) => <><LocaleSelect />{children}</>
         }}
         onPublish={async (data) => {
-          await fetch('/api/edit', {
+          await fetch('/api/pages', {
             method: 'post',
             body: JSON.stringify({ data, path }),
           });
         }}
       />
-    }</LocaleProvider>
+    }</RoutingProvider>
   );
 }

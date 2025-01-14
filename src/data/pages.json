@@ -28,5 +28,32 @@
       }
     ],
     "zones": {}
+  },
+  "/products/:id": {
+    "root": {
+      "props": {
+        "fullPath": "/products/:id",
+        "id": ":id"
+      }
+    },
+    "content": [
+      {
+        "type": "HeadingBlock",
+        "props": {
+          "title": {
+            "en": "Products page"
+          },
+          "id": "HeadingBlock-d0b22291-e0e6-481e-aad2-4eec5b543307"
+        }
+      },
+      {
+        "type": "ProductInfoBlock",
+        "props": {
+          "productId": 1,
+          "id": "ProductInfoBlock-681a1dc6-f690-4e38-8da7-c22d2c27b753"
+        }
+      }
+    ],
+    "zones": {}
   }
 }

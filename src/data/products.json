@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "name": "First product",
+    "description": "Elit sint cillum reprehenderit laborum ad consequat velit nostrud ea",
+    "price": 14.95
+  },
+  {
+    "id": 2,
+    "name": "Second product",
+    "description": "Mollit exercitation laborum lorem esse ipsum duis nostrud irure esse",
+    "price": 29.95
+  },
+  {
+    "id": 3,
+    "name": "Third product",
+    "description": "Nulla et velit quis eiusmod velit amet ut et duis ex cupidatat labore nostrud consectetur",
+    "price": 30.45
+  }
+]

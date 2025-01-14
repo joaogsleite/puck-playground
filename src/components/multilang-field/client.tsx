@@ -1,7 +1,7 @@
 'use client'
 
 import { IMultilangField } from '.'
-import { useLocale } from '../locale-ctx/client'
+import { useRoutingCtx } from '../routing-ctx/client'
 
 export default function ClientMultiLangField<T>({
   field,
@@ -10,10 +10,10 @@ export default function ClientMultiLangField<T>({
   field: IMultilangField<T>,
   children?: (locale?: T) => React.ReactNode
 }) {
-  const [locale] = useLocale()
+  const [ctx] = useRoutingCtx()
   if (children) {
-    return children(field[locale])
+    return children(field[ctx?.locale])
   } else {
-    return field[locale]
+    return field[ctx.locale]
   }
 }

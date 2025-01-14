@@ -1,10 +1,10 @@
 import { allLocales } from '@/services/locale'
-import { useLocale } from '../locale-ctx/client'
+import { useRoutingCtx } from '../routing-ctx/client'
 import { AutoField } from '@measured/puck'
 import styles from './style.module.css'
 
 export default function LocaleSelect() {
-  const [locale, setLocale] = useLocale()
+  const [ctx, setCtx] = useRoutingCtx()
   const options = allLocales.map((locale) => ({ 
     label: locale.toUpperCase(),
     value: locale,
@@ -13,8 +13,8 @@ export default function LocaleSelect() {
     <div className={styles.localeSelect}>
       <AutoField
         field={{ type: 'select', options }}
-        value={locale}
-        onChange={(value) => setLocale(value)}
+        value={ctx?.locale}
+        onChange={(locale) => setCtx({locale})}
       />
     </div>
   )

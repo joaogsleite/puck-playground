@@ -1,0 +1,10 @@
+
+.productInfo {
+  padding: 0 64px;
+}
+.detail {
+  margin-top: 10px;
+}
+.detail dt {
+  font-weight: bold;
+}
