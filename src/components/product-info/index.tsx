@@ -1,10 +1,8 @@
 import { useProduct } from "@/services/data/products"
-import { useRoutingCtx } from "../routing-ctx"
 import styles from './style.module.css'
 
 export default function ProductInfo({ id }: { id?: number }) {
-  const [ctx] = useRoutingCtx()
-  const product = useProduct(ctx.id === ':id' ? id : Number(ctx.id))
+  const product = useProduct(id)
   return product?.id ? (
     <div style={{padding: '0 64px'}}>
       <h2>Product info</h2>

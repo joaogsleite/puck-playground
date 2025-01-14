@@ -6,7 +6,7 @@ export function isServer() {
   return typeof window === 'undefined'
 }
 
-export function useHybrid<T>(promise: any, args: any) {
+export function useHybrid<A, R>(promise: (args: A) => Promise<R>, args: A) {
   if (isServer()) {
     return React.use(promise(args))
   } else {
