@@ -1,6 +1,16 @@
 {
   "/:locale": {
     "root": {
+      "fields": {
+        "locale": {
+          "type": "select",
+          "options": [
+            { "label": "EN", "value": "en" },
+            { "label": "PT", "value": "pt" },
+            { "label": "FR", "value": "fr" }
+          ]
+        }
+      },
       "props": {
         "locale": "en"
       }
@@ -33,6 +43,24 @@
   },
   "/:locale/products/:id": {
     "root": {
+      "fields": {
+        "locale": {
+          "type": "select",
+          "options": [
+            { "label": "EN", "value": "en" },
+            { "label": "PT", "value": "pt" },
+            { "label": "FR", "value": "fr" }
+          ]
+        },
+        "id": {
+          "type": "select",
+          "options": [
+            { "label": "Product 1", "value": "1" },
+            { "label": "Product 2", "value": "2" },
+            { "label": "Product 3", "value": "3" }
+          ]
+        }
+      },
       "props": {
         "fullPath": "/products/:id",
         "locale": "en",

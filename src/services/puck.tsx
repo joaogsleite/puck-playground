@@ -1,5 +1,5 @@
 import * as Puck from '@measured/puck'
-import type { Config, Data } from '@measured/puck'
+import type { Config, Data, Fields } from '@measured/puck'
 import { blocks, IBlocks } from '@/blocks'
 
 const config: Config<IBlocks> = {
@@ -29,12 +29,14 @@ export function usePuckPageCtx() {
   return [data, setData] as [Record<string, unknown>, (v: Record<string, unknown>) => void]
 }
 
-function fieldsBasedOnRoorProps(data: Data) {
-  return Object.keys(
-    data.root.props || {}
-  ).reduce((result, fieldKey) => ({
+function fieldsBasedOnRootData(data: Data) {
+  const props = data.root?.props || {}
+  const fields = (data.root as { fields?: Fields })?.fields || {}
+  const fieldNames = Object.keys(props).concat(Object.keys(fields))
+    .filter((fieldName, index, array) => array.indexOf(fieldName) === index)
+  return fieldNames.reduce((result, fieldName) => ({
     ...result,
-    [fieldKey]: { type: 'text' }
+    [fieldName]: fields?.[fieldName] || { type: 'text' }
   }), {})
 }
 
@@ -45,7 +47,7 @@ export function getConfig(data: Data) {
       ...config.root,
       fields: {
         ...(config.root?.fields || {}),
-        ...fieldsBasedOnRoorProps(data)
+        ...fieldsBasedOnRootData(data)
       }
     }
   }
