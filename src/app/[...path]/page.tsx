@@ -22,12 +22,12 @@ export default async function Page({
 }: {
   params: Promise<{ locale: string, path: string[] }>
 }) {
-  const { locale, path = [] } = await params
+  const { path = [] } = await params
   const data = getPage(`/${path.join('/')}`)  
   if (!data) {
     return notFound()
   }
-  setRoutingCtx({ locale, ...data.root.props })
+  setRoutingCtx({ ...data.root.props })
   return (
     <Render config={getConfig(data)} data={data} />
   )

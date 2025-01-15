@@ -10,8 +10,23 @@ const config: Config<IBlocks> = {
 }
 
 export function usePuckPageCtx() {
-  const { appState } = Puck.usePuck()
-  return appState.data.root.props || {}
+  const { appState, dispatch } = Puck.usePuck()
+  const data = (appState.data.root.props || {})
+  const setData = (values: Record<string, unknown>) => {
+    const data = {
+      ...appState.data,
+      root: {
+        ...appState.data.root,
+        props: {
+          ...appState.data.root.props,
+          ...values
+        }
+      }
+    }
+    dispatch({ type: "setData", data })
+    setTimeout(() => dispatch({ type: "setData", data }))
+  }
+  return [data, setData] as [Record<string, unknown>, (v: Record<string, unknown>) => void]
 }
 
 function fieldsBasedOnRoorProps(data: Data) {

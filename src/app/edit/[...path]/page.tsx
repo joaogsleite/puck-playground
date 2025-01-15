@@ -24,7 +24,6 @@ export default async function Page({
   const { path: pathArray = [] } = await params
   const path = `/${pathArray.join('/')}`
   const data = getPage(path)
-  if (!data) return null
   return (
     <Client path={path} data={data} />
   )

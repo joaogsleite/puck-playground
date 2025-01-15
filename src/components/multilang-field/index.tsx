@@ -1,7 +1,7 @@
 import { ObjectField } from '@measured/puck'
 import ClientMultiLangField from './client'
-import { getCtx } from '../routing-ctx/client'
 import { useRoutingCtx } from '../routing-ctx/server'
+import { getCtx } from '../routing-ctx/client'
 
 export interface IMultilangField<T> {
   [locale: string]: T

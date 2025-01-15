@@ -1,7 +1,9 @@
 {
-  "/": {
+  "/:locale": {
     "root": {
-      "props": {}
+      "props": {
+        "locale": "en"
+      }
     },
     "content": [
       {
@@ -29,10 +31,11 @@
     ],
     "zones": {}
   },
-  "/products/:id": {
+  "/:locale/products/:id": {
     "root": {
       "props": {
         "fullPath": "/products/:id",
+        "locale": "en",
         "id": "3"
       }
     },

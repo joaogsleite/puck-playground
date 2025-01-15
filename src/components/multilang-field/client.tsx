@@ -1,7 +1,7 @@
 'use client'
 
+import { usePuckPageCtx } from '@/services/puck'
 import { IMultilangField } from '.'
-import { useRoutingCtx } from '../routing-ctx/client'
 
 export default function ClientMultiLangField<T>({
   field,
@@ -10,10 +10,10 @@ export default function ClientMultiLangField<T>({
   field: IMultilangField<T>,
   children?: (locale?: T) => React.ReactNode
 }) {
-  const [ctx] = useRoutingCtx()
+  const [ctx] = usePuckPageCtx()
   if (children) {
-    return children(field[ctx?.locale])
+    return children(field[ctx?.locale as string])
   } else {
-    return field[ctx.locale]
+    return field[ctx.locale as string]
   }
 }

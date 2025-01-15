@@ -43,6 +43,20 @@ export function getPage(routePath: string): Data | undefined {
     const page = checkPage(allData[pagePath], pagePath, routePath)
     if (page) return page
   }
+  const newPage: Data = {
+    root: { 
+      props: {
+        ...routePath.split('/').map(decodeURIComponent).filter((part) => 
+          part.startsWith(':')
+        ).reduce((result, part) => ({
+          ...result,
+          [part.substring(1)]: ''
+        }), {})
+      }
+    },
+    content: [],
+  }
+  return newPage
 }
 
 export function savePage(path: string, data: Data) {

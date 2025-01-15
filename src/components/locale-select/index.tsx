@@ -1,10 +1,10 @@
 import { allLocales } from '@/services/locale'
-import { useRoutingCtx } from '../routing-ctx/client'
 import { AutoField } from '@measured/puck'
 import styles from './style.module.css'
+import { usePuckPageCtx } from '@/services/puck'
 
 export default function LocaleSelect() {
-  const [ctx, setCtx] = useRoutingCtx()
+  const [ctx, setCtx] = usePuckPageCtx()
   const options = allLocales.map((locale) => ({ 
     label: locale.toUpperCase(),
     value: locale,
