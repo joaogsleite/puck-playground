@@ -36,7 +36,7 @@ export function multilangFieldConfig(field: unknown) {
     type: 'object',
     label: (field as { label?: string }).label,
     objectFields: {
-      [locale]: { 
+      [locale as string]: { 
         ...(field as ObjectField),
         label: ' '
       }
