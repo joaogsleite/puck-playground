@@ -18,3 +18,8 @@ The database is just a local json file (`database.json`) in the root of the proj
 
 All blocks available for the Editor are inside the `src/blocks/` folder. The *puck* configuration lives in `src/services/puck.ts` and all blocks are imported there.
 
+
+
+# TODO
+* Page fields hidden (dont display on sidebar)
+* Page field dynamic (dont save to page props)

@@ -1,7 +1,7 @@
 import { useProduct } from "@/services/data/products"
 import styles from './style.module.css'
 import { useRoutingCtx } from "../routing-ctx"
-import { useTranslations } from "@/services/translations"
+import { useTranslations } from "@/services/data/translations"
 
 
 export default function ProductInfo({ size = 'small' }: { size?: 'small' | 'large' }) {

@@ -1,4 +1,4 @@
-import { getTranslations } from '@/services/translations'
+import { getTranslations } from '@/services/data/translations'
 import { NextRequest, NextResponse } from 'next/server'
 
 export async function GET(_: NextRequest, { params }: { params: Promise<{ locale: string }> }) {
