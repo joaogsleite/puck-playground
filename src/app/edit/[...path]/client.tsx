@@ -2,7 +2,7 @@
 
 import type { Data } from '@measured/puck'
 import { Puck } from '@measured/puck'
-import { getConfig } from '@/services/puck'
+import { getConfig, savePage } from '@/services/puck'
 import LocaleSelect from '@/components/locale-select'
 import { setCtx } from '@/components/routing-ctx/client'
 
@@ -17,12 +17,7 @@ export function Client({ path, data }: { path: string; data: Data }) {
       onChange={(data) => {
         setCtx(data.root.props || {})
       }}
-      onPublish={async (data) => {
-        await fetch('/api/pages', {
-          method: 'post',
-          body: JSON.stringify({ data, path }),
-        });
-      }}
+      onPublish={(newData) => savePage(path, data, newData)}
     />
   );
 }

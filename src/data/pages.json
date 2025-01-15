@@ -4,15 +4,29 @@
       "fields": {
         "locale": {
           "type": "select",
+          "dynamic": true,
           "options": [
-            { "label": "EN", "value": "en" },
-            { "label": "PT", "value": "pt" },
-            { "label": "FR", "value": "fr" }
+            {
+              "label": "EN",
+              "value": "en"
+            },
+            {
+              "label": "PT",
+              "value": "pt"
+            },
+            {
+              "label": "FR",
+              "value": "fr"
+            }
           ]
         }
       },
       "props": {
+        "fullPath": "/:locale",
         "locale": "en"
+      },
+      "readOnly": {
+        "fullPath": true
       }
     },
     "content": [
@@ -46,25 +60,48 @@
       "fields": {
         "locale": {
           "type": "select",
+          "dynamic": true,
           "options": [
-            { "label": "EN", "value": "en" },
-            { "label": "PT", "value": "pt" },
-            { "label": "FR", "value": "fr" }
+            {
+              "label": "EN",
+              "value": "en"
+            },
+            {
+              "label": "PT",
+              "value": "pt"
+            },
+            {
+              "label": "FR",
+              "value": "fr"
+            }
           ]
         },
         "id": {
           "type": "select",
+          "dynamic": false,
           "options": [
-            { "label": "Product 1", "value": "1" },
-            { "label": "Product 2", "value": "2" },
-            { "label": "Product 3", "value": "3" }
+            {
+              "label": "Product 1",
+              "value": "1"
+            },
+            {
+              "label": "Product 2",
+              "value": "2"
+            },
+            {
+              "label": "Product 3",
+              "value": "3"
+            }
           ]
         }
       },
       "props": {
-        "fullPath": "/products/:id",
+        "fullPath": "/:locale/products/:id",
         "locale": "en",
-        "id": "3"
+        "id": "2"
+      },
+      "readOnly": {
+        "fullPath": true
       }
     },
     "content": [

@@ -5,7 +5,9 @@ import path from 'path'
 
 const jsonPath = path.resolve('src/data/pages.json')
 
-function checkPage(page: Data, pagePath: string, routePath: string) {
+export type IPage = Data<Record<string, unknown>, Record<string, unknown>>
+
+function checkPage(page: IPage, pagePath: string, routePath: string) {
   const routeParts = routePath.split('/').map(decodeURIComponent)
   const pageParts = pagePath.split('/').map(decodeURIComponent)
   const params: any = {}
@@ -22,19 +24,31 @@ function checkPage(page: Data, pagePath: string, routePath: string) {
       return
     }
   }
+  const pageFields = page.root.fields as Record<string, { readOnly?: boolean }>
   return {
     ...page,
     root: {
       ...page.root,
       props: {
-        ...page.root.props,
         fullPath: pagePath,
-        ...params
+        ...page.root.props,
+        ...params,
+      },
+      readOnly: {
+        fullPath: true,
+        ...Object.keys(pageFields).reduce((result, fieldName) => ({
+          ...result,
+          [fieldName]: pageFields[fieldName].readOnly
+        }), {})
       }
     }
   }
 }
-export function getPage(routePath: string): Data {
+
+export function getPagePath(page: IPage) {
+  return page.root.props?.fullPath as string | undefined
+}
+export function getPage(routePath: string): IPage {
   const allData: Record<string, Data> = fs.existsSync(jsonPath)
     ? JSON.parse(fs.readFileSync(jsonPath, 'utf-8'))
     : {}
@@ -42,15 +56,19 @@ export function getPage(routePath: string): Data {
     const page = checkPage(allData[pagePath], pagePath, routePath)
     if (page) return page
   }
-  const newPage: Data = {
+  const newPage = {
     root: { 
       props: {
-        ...routePath.split('/').map(decodeURIComponent).filter((part) => 
+        fullPath: routePath,
+        ...routePath.split('/').filter((part) => 
           part.startsWith(':')
         ).reduce((result, part) => ({
           ...result,
           [part.substring(1)]: ''
         }), {})
+      },
+      readOnly: {
+        fullPath: true
       }
     },
     content: [],

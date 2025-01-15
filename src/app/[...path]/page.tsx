@@ -13,7 +13,7 @@ export async function generateMetadata({
   const { path = [] } = await params
 
   return {
-    title: getPage(`/${path.join('/')}`)?.root.props?.title,
+    title: getPage(`/${path.join('/')}`)?.root.props?.title as string || '',
   };
 }
 
@@ -27,6 +27,7 @@ export default async function Page({
   if (!data) {
     return notFound()
   }
+  console.log(data.root.props)
   setRoutingCtx({ ...data.root.props })
   return (
     <Render config={getConfig(data)} data={data} />
