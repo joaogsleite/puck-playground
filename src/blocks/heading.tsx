@@ -10,7 +10,7 @@ export const HeadingBlock: ComponentConfig<IHeadingBlock> = {
     title: multilangFieldConfig({ type: 'text', label: 'Title' }),
   }),
   defaultProps: {
-    title: { en: 'Title' }
+    title: { en: 'Title', pt: 'Título', fr: 'Titre' }
   },
   render: ({ title }) => (
     <div style={{ padding: 64 }}>

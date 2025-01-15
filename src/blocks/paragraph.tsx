@@ -10,7 +10,7 @@ export const ParagraphBlock: ComponentConfig<IParagraphBlock> = {
     copy: multilangFieldConfig({ type: 'text', label: 'Copy' }),
   }),
   defaultProps: {
-    copy: { en: 'Hello world' },
+    copy: { en: 'Hello world', pt: 'Olá mundo', fr: 'Bonjour le monde' },
   },
   render: ({ copy }) => (
     <p style={{padding: '0 64px'}}>
