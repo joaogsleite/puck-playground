@@ -9,7 +9,7 @@ export default function ProductInfo() {
   const product = useProduct(ctx.id)
   const t = useTranslations(ctx.locale)
   return product?.id ? (
-    <div style={{padding: '0 64px'}}>
+    <div className={styles.productInfo}>
       <h2>{t.title}</h2>
       <dl className={styles.detail}>
         <dt>{t.name}</dt>
