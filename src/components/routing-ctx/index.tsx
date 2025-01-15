@@ -4,7 +4,7 @@ import * as server from './server'
 
 export function useRoutingCtx() {
   if (isServer()) {
-    return [server.useRoutingCtx()]
+    return server.useRoutingCtx()
   } else {
     return client.useRoutingCtx()
   }

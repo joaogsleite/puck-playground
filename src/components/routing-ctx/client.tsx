@@ -4,9 +4,9 @@ import { initialCtx, IRoutingCtx } from '@/services/routing'
 
 let ctxValue = initialCtx
 
-export function useRoutingCtx(): [IRoutingCtx, (v: Partial<IRoutingCtx>) => void]  {
-  const [ctx, setCtx] = usePuckPageCtx()
-  return [ctx as IRoutingCtx, setCtx]
+export function useRoutingCtx()  {
+  const [ctx] = usePuckPageCtx()
+  return ctx as IRoutingCtx
 }
 
 export function getCtx() {

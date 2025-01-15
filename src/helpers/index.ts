@@ -10,9 +10,9 @@ export function useHybrid<A, R>(promise: (args: A) => Promise<R>, args: A) {
   if (isServer()) {
     return React.use(promise(args))
   } else {
-    const [data, setData] = React.useState<T>()
+    const [data, setData] = React.useState<R>()
     React.useEffect(() => {
-      promise(args).then((data: any) => setData(data))
+      promise(args).then((data) => setData(data))
     }, [promise, args])
     return data
   }

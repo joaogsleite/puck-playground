@@ -5,7 +5,7 @@ import { useTranslations } from "@/services/translations"
 
 
 export default function ProductInfo() {
-  const [ctx] = useRoutingCtx()
+  const ctx = useRoutingCtx()
   const product = useProduct(ctx.id)
   const t = useTranslations(ctx.locale)
   return product?.id ? (
