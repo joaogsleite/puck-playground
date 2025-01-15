@@ -27,7 +27,6 @@ export default async function Page({
   if (!data) {
     return notFound()
   }
-  console.log(data.root.props)
   setRoutingCtx({ ...data.root.props })
   return (
     <Render config={getConfig(data)} data={data} />
