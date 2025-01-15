@@ -5,10 +5,11 @@ import { IPage } from "../data/pages"
 export function createField(field: string | Field | { type: string }) {
   if (typeof field === 'string') {
     if (field === 'fullPath') {
-      return { type: 'text', readOnly: true }
+      return { type: 'text', readOnly: true, label: 'Path' }
     } else if (field === 'locale') {
       return { 
         type: 'select',
+        label: 'Locale',
         options: allLocales.map((locale) => ({ 
           label: locale.toUpperCase(),
           value: locale

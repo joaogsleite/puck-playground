@@ -9,6 +9,7 @@ export function Client({ path, data }: { path: string; data: Data }) {
   return (
     <Puck
       config={getConfig(data)}
+      headerTitle={path}
       data={data}
       overrides={{
         headerActions: ({children}) => <><LocaleSelect />{children}</>

@@ -24,7 +24,6 @@ function checkPage(page: IPage, pagePath: string, routePath: string) {
       return
     }
   }
-  const pageFields = page.root.fields as Record<string, { readOnly?: boolean }>
   return {
     ...page,
     root: {
@@ -34,13 +33,6 @@ function checkPage(page: IPage, pagePath: string, routePath: string) {
         ...page.root.props,
         ...params,
       },
-      readOnly: {
-        fullPath: true,
-        ...Object.keys(pageFields).reduce((result, fieldName) => ({
-          ...result,
-          [fieldName]: pageFields[fieldName].readOnly
-        }), {})
-      }
     }
   }
 }
@@ -51,7 +43,7 @@ export function getPagePath(page: IPage) {
 export function getOrCreatePage(routePath: string) {
   const page = getPage(routePath)
   if (page) return page
-  return {
+  else return {
     root: { 
       props: {
         fullPath: routePath,
@@ -62,9 +54,6 @@ export function getOrCreatePage(routePath: string) {
           [part.substring(1)]: ''
         }), {})
       },
-      readOnly: {
-        fullPath: true
-      }
     },
     content: [],
   }

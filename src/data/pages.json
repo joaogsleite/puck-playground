@@ -4,6 +4,7 @@
       "fields": {
         "locale": {
           "type": "select",
+          "label": "Locale",
           "dynamic": true,
           "options": [
             {
@@ -57,10 +58,12 @@
       "fields": {
         "author": {
           "type": "text",
+          "label": "Author",
           "readOnly": true
         },
         "locale": {
           "type": "select",
+          "label": "Locale",
           "dynamic": true,
           "options": [
             {
@@ -79,6 +82,7 @@
         },
         "id": {
           "type": "select",
+          "label": "Product ID",
           "dynamic": false,
           "options": [
             {
