@@ -24,9 +24,6 @@
       "props": {
         "fullPath": "/:locale",
         "locale": "en"
-      },
-      "readOnly": {
-        "fullPath": true
       }
     },
     "content": [
@@ -58,6 +55,10 @@
   "/:locale/products/:id": {
     "root": {
       "fields": {
+        "author": {
+          "type": "text",
+          "readOnly": true
+        },
         "locale": {
           "type": "select",
           "dynamic": true,
@@ -98,10 +99,8 @@
       "props": {
         "fullPath": "/:locale/products/:id",
         "locale": "en",
-        "id": "2"
-      },
-      "readOnly": {
-        "fullPath": true
+        "id": "1",
+        "author": "João Leite"
       }
     },
     "content": [

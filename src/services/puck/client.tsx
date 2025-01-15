@@ -16,7 +16,6 @@ export function usePuckPageCtx() {
       }
     }
     dispatch({ type: "setData", data })
-    setTimeout(() => dispatch({ type: "setData", data }))
   }
   return [data, setData] as [Record<string, unknown>, (v: Record<string, unknown>) => void]
 }

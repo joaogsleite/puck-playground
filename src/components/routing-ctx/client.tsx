@@ -6,6 +6,7 @@ let ctxValue = initialCtx
 
 export function useRoutingCtx()  {
   const [ctx] = usePuckPageCtx()
+  ctxValue = ctx as IRoutingCtx
   return ctx as IRoutingCtx
 }
 

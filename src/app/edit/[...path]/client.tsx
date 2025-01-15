@@ -4,7 +4,6 @@ import type { Data } from '@measured/puck'
 import { Puck } from '@measured/puck'
 import { getConfig, savePage } from '@/services/puck'
 import LocaleSelect from '@/components/locale-select'
-import { setCtx } from '@/components/routing-ctx/client'
 
 export function Client({ path, data }: { path: string; data: Data }) {
   return (
@@ -13,9 +12,6 @@ export function Client({ path, data }: { path: string; data: Data }) {
       data={data}
       overrides={{
         headerActions: ({children}) => <><LocaleSelect />{children}</>
-      }}
-      onChange={(data) => {
-        setCtx(data.root.props || {})
       }}
       onPublish={(newData) => savePage(path, data, newData)}
     />

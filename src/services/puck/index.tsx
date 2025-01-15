@@ -11,7 +11,7 @@ const defaultConfig: Config<IBlocks> = {
 }
 
 export function getConfig(data: Data) {
-  return {
+  const config: Config<IBlocks> = {
     ...defaultConfig,
     root: {
       ...defaultConfig.root,
@@ -21,6 +21,15 @@ export function getConfig(data: Data) {
       },
     }
   }
+  config.root!.resolveData = () => ({
+    readOnly: {
+      ...Object.keys(config.root?.fields || {}).reduce((result, fieldName)=>({
+        ...result,
+        [fieldName]: !!(config.root?.fields?.[fieldName] as { readOnly?: boolean })?.readOnly
+      }), {})
+    }
+  })
+  return config
 }
 
 export async function savePage(path: string, originalData: IPage, newData: IPage) {
@@ -34,10 +43,7 @@ export async function savePage(path: string, originalData: IPage, newData: IPage
         ...originalData.root.props,
         ...ignoreDynamicPropValues(originalData, newData),
       },
-      readOnly: {
-        ...originalData.root.readOnly,
-        ...newData.root.readOnly
-      }
+      readOnly: undefined,
     },
     content: [
       ...newData.content
