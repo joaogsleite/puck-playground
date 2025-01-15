@@ -2,6 +2,12 @@
 .productInfo {
   padding: 15px 64px;
 }
+.sizeSmall {
+  font-size: 12px;
+}
+.sizeLarge {
+  font-size: 20px;
+}
 .detail {
   margin-top: 10px;
 }
