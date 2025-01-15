@@ -1,4 +1,3 @@
-import * as Puck from '@measured/puck'
 import type { Config, Data, Fields } from '@measured/puck'
 import { blocks, IBlocks } from '@/blocks'
 
@@ -7,26 +6,6 @@ const config: Config<IBlocks> = {
   root: {
     fields: {}
   }
-}
-
-export function usePuckPageCtx() {
-  const { appState, dispatch } = Puck.usePuck()
-  const data = (appState.data.root.props || {})
-  const setData = (values: Record<string, unknown>) => {
-    const data = {
-      ...appState.data,
-      root: {
-        ...appState.data.root,
-        props: {
-          ...appState.data.root.props,
-          ...values
-        }
-      }
-    }
-    dispatch({ type: "setData", data })
-    setTimeout(() => dispatch({ type: "setData", data }))
-  }
-  return [data, setData] as [Record<string, unknown>, (v: Record<string, unknown>) => void]
 }
 
 function fieldsBasedOnRootData(data: Data) {
@@ -53,4 +32,4 @@ export function getConfig(data: Data) {
   }
 }
 
-export default config
+export { usePuckPageCtx } from './client'

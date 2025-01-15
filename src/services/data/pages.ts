@@ -34,11 +34,10 @@ function checkPage(page: Data, pagePath: string, routePath: string) {
     }
   }
 }
-export function getPage(routePath: string): Data | undefined {
-  const allData: Record<string, Data> | null = fs.existsSync(jsonPath)
+export function getPage(routePath: string): Data {
+  const allData: Record<string, Data> = fs.existsSync(jsonPath)
     ? JSON.parse(fs.readFileSync(jsonPath, 'utf-8'))
-    : undefined
-  if (!allData) return
+    : {}
   for (const pagePath of Object.keys(allData)) {
     const page = checkPage(allData[pagePath], pagePath, routePath)
     if (page) return page

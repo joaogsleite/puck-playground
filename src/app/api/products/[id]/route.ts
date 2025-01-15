@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { getProduct } from '@/services/data/products'
+import { getProduct } from '@/services/data/products/server'
 
 export async function GET(_: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   const id = (await params).id
