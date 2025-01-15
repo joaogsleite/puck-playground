@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { fileExists, readJSON } from '@/helpers/fs'
 import { Data } from '@measured/puck'
 import fs from 'fs'
 import path from 'path'
@@ -66,6 +67,16 @@ export function getPage(routePath: string): IPage | undefined {
     const page = checkPage(allData[pagePath], pagePath, routePath)
     if (page) return page
   }
+}
+
+export async function listPages() {
+  if (!await fileExists(jsonPath)) return []
+  const allData: Record<string, Data> = await readJSON(jsonPath)
+  return Object.keys(allData).map((path) => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { fullPath, ...props } = allData[path].root.props as Record<string, unknown>
+    return { path, props }
+  })
 }
 
 export function savePage(path: string, data: Data) {

@@ -1,0 +1,43 @@
+.container {
+  background: rgb(245, 245, 245);
+  height: 100vh;
+}
+.header {
+  height: 68px;
+  border-bottom: 1px solid #dcdcdc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: white;
+}
+.header h1 {
+  font-size: 16px;
+}
+.list {
+  margin: 40px auto;
+  padding: 0 20px;
+  max-width: 500px;
+  width: 100%;
+  list-style: none;
+}
+.item {
+  border: 1px solid #dcdcdc;
+  background: white;
+  border-radius: 4px;
+  margin-top: 20px;
+  position: relative;
+}
+.item a {
+  display: block;
+  padding: 15px;
+}
+
+.itemTitle {
+  font-size: 18px;
+  letter-spacing: 1px;
+}
+.itemProps {
+  margin-top: 10px;
+  font-size: 10px;
+  color: #666;
+}
