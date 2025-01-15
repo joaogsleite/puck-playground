@@ -3,7 +3,7 @@ import '@measured/puck/puck.css'
 import { Client } from './client'
 import { Metadata } from 'next'
 import { redirect } from 'next/navigation'
-import { getPage, getPagePath } from '@/services/data/pages'
+import { getOrCreatePage, getPagePath } from '@/services/data/pages'
 
 export async function generateMetadata({
   params,
@@ -24,7 +24,7 @@ export default async function Page({
 }) {
   const { path: pathArray = [] } = await params
   const path = decodeURIComponent(`/${pathArray.join('/')}`)
-  const page = getPage(path)
+  const page = getOrCreatePage(path)
   const pagePath = getPagePath(page)
   if (pagePath && pagePath !== path) {
     return redirect(`/edit/${pagePath}`)

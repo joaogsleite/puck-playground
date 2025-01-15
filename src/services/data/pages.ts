@@ -48,15 +48,10 @@ function checkPage(page: IPage, pagePath: string, routePath: string) {
 export function getPagePath(page: IPage) {
   return page.root.props?.fullPath as string | undefined
 }
-export function getPage(routePath: string): IPage {
-  const allData: Record<string, Data> = fs.existsSync(jsonPath)
-    ? JSON.parse(fs.readFileSync(jsonPath, 'utf-8'))
-    : {}
-  for (const pagePath of Object.keys(allData)) {
-    const page = checkPage(allData[pagePath], pagePath, routePath)
-    if (page) return page
-  }
-  const newPage = {
+export function getOrCreatePage(routePath: string) {
+  const page = getPage(routePath)
+  if (page) return page
+  return {
     root: { 
       props: {
         fullPath: routePath,
@@ -73,7 +68,15 @@ export function getPage(routePath: string): IPage {
     },
     content: [],
   }
-  return newPage
+}
+export function getPage(routePath: string): IPage | undefined {
+  const allData: Record<string, Data> = fs.existsSync(jsonPath)
+    ? JSON.parse(fs.readFileSync(jsonPath, 'utf-8'))
+    : {}
+  for (const pagePath of Object.keys(allData)) {
+    const page = checkPage(allData[pagePath], pagePath, routePath)
+    if (page) return page
+  }
 }
 
 export function savePage(path: string, data: Data) {
