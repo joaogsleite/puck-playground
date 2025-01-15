@@ -14,6 +14,6 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 `/...` is the default route and `/edit/...` is the edit route. Check `src/app/...` folder.
 
-The database is just a local json file (`database.json`) in the root of the project. The `src/services/data/pages.ts` loads and store data. The `/api/edit` endpoint saves the data in the json file.
+The database is just a local json file in `src/data/pages.json`. The `src/services/data/pages.ts` loads and store the data. The `POST /api/pages` endpoint saves the data in the json file.
 
-All blocks available for the Editor are inside the `src/blocks/` folder. The *puck* configuration lives in `src/services/puck` and all blocks are imported there.
+All blocks available for the Editor are inside the `src/blocks/` folder. The [puck](https://puckeditor.com/docs) configuration lives in `src/services/puck` and all blocks are imported there.
